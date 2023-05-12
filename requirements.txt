@@ -1,0 +1,4 @@
+flask
+flup6
+python-dotenv
+flask_restful
