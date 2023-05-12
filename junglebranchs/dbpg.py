@@ -1,6 +1,6 @@
 from configs import *
 
-def selectTable(table = '', names = '', where = ''):
+def selectTable(table = '', names = '', where = '', order=[], pag=[]):
 	conn = psycopg2.connect(host=pg_conn_data["host"],database=pg_conn_data["db"],user=pg_conn_data["user"],password=pg_conn_data["password"],port=pg_conn_data["port"])
 	try:
 		with conn.cursor() as cursor:
@@ -14,6 +14,10 @@ def selectTable(table = '', names = '', where = ''):
 			sql = "SELECT " + StrN + " FROM " + table
 			if( len(where) > 0 ):
 				sql += " WHERE " + where
+			if( len(order) == 2 ):
+				sql += " ORDER BY " + str(order[0]) + " " + str(order[1])
+			if( len(pag) == 2 ):
+				sql += " LIMIT " + str(pag[0]) + " OFFSET " +  str(pag[1])
 			cursor.execute(sql)
 			rows = cursor.fetchall()
 			cursor.close()

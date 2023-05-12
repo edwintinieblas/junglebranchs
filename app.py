@@ -11,6 +11,6 @@ def hello():
 
 class prueba(Resource):
 	def get(self):
-		rows = junglebranchs.dbpg.selectTable("prueba","*")#,"id = 1")
+		rows = junglebranchs.dbpg.selectTable("prueba","*","true",["id","asc"],[1,0])
 		return rows
 api.add_resource(prueba, '/api/pruebasql')
