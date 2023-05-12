@@ -11,7 +11,9 @@ def selectTable(table = '', names = '', where = ''):
 					StrN = (','.join(names))
 				else:
 					StrN = names
-			sql = "SELECT " + StrN + " FROM " + table + " WHERE " + where
+			sql = "SELECT " + StrN + " FROM " + table
+			if( len(where) > 0 ):
+				sql += " WHERE " + where
 			cursor.execute(sql)
 			rows = cursor.fetchall()
 			cursor.close()

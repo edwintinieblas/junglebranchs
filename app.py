@@ -8,13 +8,9 @@ api = Api(app)
 def hello():
 	return "\n|  |_______/)______/)_____\n|  |¯¯\)¯¯¯¯¯¯¯\)¯¯¯¯¯¯\)¯\n|  |\n|  |__API__JUNGLEBRANCHS__\n|  |\n|  |_______/)______/)_____\n|  |¯¯¯¯¯¯¯¯¯¯\)¯¯¯¯¯\)¯¯¯\n"
 
-@app.route("/pruebasql")
-def pruebasql():
-	rows = junglebranchs.dbpg.selectTable("prueba","*","id = 1")
-	return str(rows)
-	
-	
+
 class prueba(Resource):
 	def get(self):
-		return "prueba"
-api.add_resource(prueba, '/prueba')
+		rows = junglebranchs.dbpg.selectTable("prueba","*")#,"id = 1")
+		return rows
+api.add_resource(prueba, '/api/pruebasql')
